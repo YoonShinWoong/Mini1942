@@ -8,10 +8,10 @@ public class SpawnManager : MonoBehaviour
     public GameObject[] EnemyPrefabs;
 
     void Start(){
-        SpawnRandom();
+        //SpawnRandom();
     }
 
-    void SpawnRandom(){
+    public void SpawnRandom(){
         GameObject enemyPrefab = EnemyPrefabs[Random.Range(0,EnemyPrefabs.Length)];
         Points points = new Points();
         Vector2 pos = points[Random.Range(0,points.GetLength())].GetPos();

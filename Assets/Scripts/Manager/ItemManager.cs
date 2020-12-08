@@ -7,10 +7,10 @@ public class ItemManager : MonoBehaviour
     public GameObject[] ItemPrefabs;
 
     void Start(){
-        SpawnRandom();
+        //SpawnRandom();
     }
 
-    void SpawnRandom(){
+    public void SpawnRandom(){
         GameObject itemPrefab = ItemPrefabs[Random.Range(0,ItemPrefabs.Length)];
         Points points = new Points();
         Vector2 pos = points[Random.Range(0,points.GetLength())].GetPos();

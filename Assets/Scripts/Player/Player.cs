@@ -17,8 +17,20 @@ public class Player : MonoBehaviour
 
         if(health <= 0){
             Die();
+            ExitGame(); // 종료
         }
     }
+
+    // 종료함수
+        public void ExitGame()
+    {
+    #if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+    #else
+        Application.Quit() // 어플리케이션 종료
+    #endif
+    }
+
     void Die(){
         Destroy(gameObject); // 자기 자신 소멸
     }
@@ -26,8 +38,14 @@ public class Player : MonoBehaviour
     void OnCollisionEnter2D(Collision2D coll){
         // 충돌한 객체가 Enemy일 경우를 구분
         if( coll.gameObject.CompareTag("Enemy")){
-            TakeDamage(10);   
+            TakeDamage(10);
+            EventManager.RunPlayerHurtEvent();   
             Destroy(coll.gameObject);
+        }
+
+        // 충돌한 객체가 Coin일 경우
+        else if( coll.gameObject.CompareTag("Coin")){
+            EventManager.RunPlayerGetCoinEvent();
         }
     }
 

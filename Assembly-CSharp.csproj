@@ -43,6 +43,7 @@
      <Compile Include="Assets\Scripts\Item\Coin.cs" />
      <Compile Include="Assets\Scripts\Item\Item.cs" />
      <Compile Include="Assets\Scripts\Item\SpeedUp.cs" />
+     <Compile Include="Assets\Scripts\Manager\EventManager.cs" />
      <Compile Include="Assets\Scripts\Manager\GameManager.cs" />
      <Compile Include="Assets\Scripts\Manager\ItemManager.cs" />
      <Compile Include="Assets\Scripts\Manager\SpawnManager.cs" />

@@ -43,6 +43,7 @@ public class Enemy : MonoBehaviour
     }
 
     void Die(){
+        EventManager.RunEnemyDieEvent();
         Destroy(gameObject); // 자기 자신 소멸
     }
 

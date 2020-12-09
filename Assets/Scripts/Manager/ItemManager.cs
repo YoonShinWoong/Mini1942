@@ -10,14 +10,19 @@ public class ItemManager : MonoBehaviour
         //SpawnRandom();
     }
 
-    public void SpawnRandom(){
-        GameObject itemPrefab = ItemPrefabs[Random.Range(0,ItemPrefabs.Length)];
-        Points points = new Points();
-        Vector2 pos = points[Random.Range(0,points.GetLength())].GetPos();
+    // Invoke는 단순 시간 대기, CorRoutine은 제어권 관리
+    public IEnumerator SpawnRandom(){
+        while(true){
+            GameObject itemPrefab = ItemPrefabs[Random.Range(0,ItemPrefabs.Length)];
+            Points points = new Points();
+            Vector2 pos = points[Random.Range(0,points.GetCount())].GetPos();
 
-        SpawnItem(itemPrefab, pos);
-        Invoke("SpawnRandom", 1.0f);
+            SpawnItem(itemPrefab, pos);
+
+            yield return new WaitForSeconds(1.0f);
+        }
     }
+
     void SpawnItem(GameObject itemPrefab, Vector2 pos){
         GameObject item = Instantiate(itemPrefab);
         item.transform.position = pos;
@@ -29,7 +34,7 @@ enum Items{
 }
 
 class Points{
-    public Point[] points = {
+    public static List<Point> points = new List<Point> {
         new Point(0,0),
         new Point(1,0),
         new Point(-1,0),
@@ -49,17 +54,17 @@ class Points{
         }
     }
 
-    public int GetLength(){
-        return points.Length;
+    public int GetCount(){
+        return points.Count;
     }
 
 }
 
 // 위치 구조체
 public struct Point{
-    int x,y;
+    float x,y;
 
-    public Point(int x, int y){
+    public Point(float x, float y){
         this.x = x;
         this.y = y;
     }

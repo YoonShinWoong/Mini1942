@@ -19,6 +19,7 @@ public class Coin : Item, IEffect
         }
     }
     public override void ApplyItem(){
+        
         DestroyThis(); // 획득 시 사라지기
     }
 
